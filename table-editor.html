@@ -490,9 +490,6 @@
                     */
                 });
 
-                const jsonData = JSON.parse(data);
-                console.log(jsonData);
-
                 let output = {
                     "table": [
                         {
@@ -739,12 +736,6 @@
                     }
                 }
 
-                console.log(output);
-                console.log(jsonData.length);
-
-                jsonData = { ...output };
-                console.log(jsonData);
-
                 fetch(`${apiBaseUrl}/upload`, {
                     method: 'POST',
                     headers: {
@@ -755,7 +746,7 @@
                             mode: { '.tag': 'overwrite' },
                         }),
                     },
-                    body: JSON.stringify(jsonData),
+                    body: JSON.stringify(output),
                 })
                     .then(() => {
                         console.log('Object appended and saved.');
