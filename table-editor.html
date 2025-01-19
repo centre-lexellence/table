@@ -30,6 +30,7 @@
     <button id="generateTokenLink">Clicker pour commencez</button>
     <button id="save-changes">Sauvgarder les changements</button>
     <h1 id="tokenstat">Not ready</h1>
+    <h1 id="submitMessage"></h1>
     <div class="tables-container">
         <div class="table-holder table-holder-1">
             <h3>2 Baccalauréat (Groupe 1)</h3>
@@ -753,7 +754,7 @@
                 })
                     .then(() => {
                         console.log('Object appended and saved.');
-                        document.getElementById("submitMessage").innerHTML = "News added successfully!!";
+                        document.getElementById("submitMessage").innerHTML = "table changed successfully!!";
                     })
                     .catch((error) => {
                         console.error('Error saving JSON: ', error);
