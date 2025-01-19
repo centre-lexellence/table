@@ -20,10 +20,15 @@
         border: 2px solid black;
         padding: 5px;
     }
+
+    #tokenstat {
+        color: red;
+    }
 </style>
 
 <body>
     <button id="generateTokenLink">Clicker pour commencez</button>
+    <h1 id="tokenstat">Not ready</h1>
     <div class="tables-container">
         <div class="table-holder table-holder-1">
             <h3>2 Baccalauréat (Groupe 1)</h3>
@@ -347,5 +352,71 @@
         </div>
     </div>
 </body>
+
+<script>
+    function closeTab() {
+        const currentURL = window.location.href;
+
+        console.log(currentURL);
+
+        if (currentURL != "https://centre-lexellence.github.io/table/table-editor.html") {
+            //window.close();
+        }
+    }
+
+    window.addEventListener('load', closeTab);
+
+    const clientId = 'kigjitoui3np9di';
+    const redirectUri = 'https://centre-lexellence.github.io/table/table-editor.html';
+    let newWindow;
+    let accessToken;
+
+    let sharedLink;
+
+    document.getElementById('generateTokenLink').addEventListener('click', () => {
+        const authUrl = `https://www.dropbox.com/oauth2/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}`;
+        newWindow = window.open(authUrl, '_blank');
+        if (!newWindow) {
+            alert('Please allow pop-ups to proceed.');
+        }
+    });
+
+    let callCount = 0;
+    const maxCallCount = 10;
+    let animationFrameId;
+
+    function captureURL() {
+        if (newWindow) {
+            const newWindowURL = newWindow.location.href;
+            console.log('URL of the new window:', newWindowURL);
+
+            callCount++;
+
+            if (callCount >= maxCallCount) {
+                const url = new URL(newWindowURL);
+                console.log(url);
+                const hash = url.hash;
+                accessToken = hash.split('=')[1].split('&')[0];
+                console.log(accessToken);
+
+                newWindow.close();
+
+                cancelAnimationFrame(animationFrameId);
+
+                document.getElementById("tokenstat").innerHTML = "All good, now edit!";
+                document.getElementById("tokenstat").style.color = "green";
+
+            } else {
+                animationFrameId = requestAnimationFrame(captureURL);
+            }
+        }
+    };
+
+    document.getElementById('generateTokenLink').addEventListener('click', () => {
+        animationFrameId = requestAnimationFrame(captureURL);
+    });
+
+    console.log(accessToken)
+</script>
 
 </html>
