@@ -362,7 +362,7 @@
         console.log(currentURL);
 
         if (currentURL != "https://centre-lexellence.github.io/table/table-editor.html") {
-            //window.close();
+            window.close();
         }
     }
 
@@ -734,6 +734,19 @@
 
                 console.log(tableArrayNew)
                 console.log(output)
+
+                console.log('Request:', {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/octet-stream',
+                        'Dropbox-API-Arg': JSON.stringify({
+                            path: filePath,
+                            mode: 'overwrite',
+                        }),
+                    },
+                    body: output,
+                });
 
                 fetch(`${apiBaseUrl}/upload`, {
                     method: 'POST',
