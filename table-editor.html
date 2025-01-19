@@ -424,7 +424,7 @@
 
     let objectTable;
 
-    const sharedLinkFetch = "https://www.dropbox.com/scl/fi/8pkn7lcizifsho7ae46s0/table.json?rlkey=81zig505ueylu1uygdqvnbsak&st=49sjzk2a&dl=0";
+    const sharedLinkFetch = "https://www.dropbox.com/scl/fi/1e2ytav07ml1riekgs71d/table.json?rlkey=thelsora1zrtsah5qzjyz9fch&st=yhp1wcxc&dl=0";
 
     const directLink = sharedLinkFetch.replace("www.dropbox.com", "dl.dropboxusercontent.com");
 
@@ -458,7 +458,7 @@
 
     document.getElementById('save-changes').addEventListener('click', () => {
 
-        sharedLink = "https://www.dropbox.com/scl/fi/8pkn7lcizifsho7ae46s0/table.json?rlkey=81zig505ueylu1uygdqvnbsak&st=49sjzk2a&dl=0";
+        sharedLink = "https://www.dropbox.com/scl/fi/1e2ytav07ml1riekgs71d/table.json?rlkey=thelsora1zrtsah5qzjyz9fch&st=yhp1wcxc&dl=0";
 
         const directLink = sharedLink.replace("www.dropbox.com", "dl.dropboxusercontent.com");
 
@@ -725,7 +725,7 @@
 
                 for (let i = 0; i < objectTable.table.length; i++) {
                     for (let j = 0; j < objectTable.table[i].content.length; j++) {
-                        output.table[i][j] = [tableArrayNew[numbering], tableArrayNew[numbering + 1]]
+                        output.table[i].content[j] = [tableArrayNew[numbering], tableArrayNew[numbering + 1]]
                         numbering += 2;
                     }
                 }
