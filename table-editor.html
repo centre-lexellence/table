@@ -443,7 +443,6 @@
             let number = 0
 
             document.querySelectorAll('.input-element').forEach((element) => {
-                console.log(element);
 
                 element.value = tableArray[number];
 
@@ -467,6 +466,8 @@
 
         const filePath = "/table.json";
 
+        accessToken = "sl.CE1_-njucbInNzwAfNTJ2J-YgFlEhJhLuipZRKg_-5XX66n8Tl2xmHuUqeTyuBlRQ8R_0E6Kdk_SyVIspEK_Hqy5RvAb26JIVWHR0Ogv3S07a8QBjA_NTaYgvYjGn9mMeLwPIfzHyH2T"
+
         fetch(`${apiBaseUrl}/download`, {
             method: 'POST',
             headers: {
@@ -481,7 +482,6 @@
                 tableArrayNew = []
 
                 document.querySelectorAll('.input-element').forEach((element) => {
-                    console.log(element);
 
                     tableArrayNew.push(element.value);
                 });
