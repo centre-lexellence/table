@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Unlimit Your Imagination">
+    <meta name="viewport" content="width=device-width, initail-scale=1.0">
+    <meta name="keywords" content="zertline, zertline">
+    <meta name="author" content="zertline">
+    <title>callback</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    window.onload = function () {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const accessToken = params.get("access_token");
+        const expiresIn = 14400;
+
+        if (accessToken) {
+            const expirationTime = Date.now() + expiresIn * 1000;
+            localStorage.setItem("dropbox_token", accessToken);
+            localStorage.setItem("dropbox_token_expiry", expirationTime);
+
+            console.log("New token received and stored.");
+
+            window.close();
+        }
+    };
+</script>
+
+</html>
