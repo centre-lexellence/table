@@ -443,7 +443,15 @@
             if (newTab.closed) {
                 clearInterval(checkInterval);
                 console.log("Popup closed");
-                checkDropboxToken();
+
+                const token = getStoredDropboxToken();
+
+                accessToken = token;
+                document.getElementById('tokenstat').innerHTML = "Ready";
+                document.getElementById('tokenstat').style.color = "green";
+                console.log("Using stored Dropbox token:", token);
+
+                scheduleTokenRefresh();
             }
         }, 1000);
     }
