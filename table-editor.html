@@ -426,7 +426,6 @@
 
             scheduleTokenRefresh();
         } else {
-            openDropboxLogin();
             console.log("No valid token found. Redirecting to login...");
         }
     }
@@ -444,7 +443,7 @@
                 clearInterval(checkInterval);
                 console.log("Popup closed");
 
-                const token = getStoredDropboxToken();
+                const token = localStorage.getItem("dropbox_token");
 
                 accessToken = token;
                 document.getElementById('tokenstat').innerHTML = "Ready";
