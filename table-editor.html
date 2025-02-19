@@ -399,7 +399,7 @@
     let accessToken;
 
     function isDropboxTokenValid() {
-        const expirationTime = localStorage.getItem("dropbox_token_expiry");
+        const expirationTime = localStorage.getItem("dropbox_token_expiry_ge");
         if (!expirationTime) return false;
 
         return Date.now() < parseInt(expirationTime, 10);
@@ -407,7 +407,7 @@
 
     function getStoredDropboxToken() {
         if (isDropboxTokenValid()) {
-            return localStorage.getItem("dropbox_token");
+            return localStorage.getItem("dropbox_token_ge");
         } else {
             console.log("Dropbox token expired. Attempting to get a new one...");
             openDropboxLogin();
@@ -443,7 +443,7 @@
                 clearInterval(checkInterval);
                 console.log("Popup closed");
 
-                const token = localStorage.getItem("dropbox_token");
+                const token = localStorage.getItem("dropbox_token_ge");
 
                 accessToken = token;
                 document.getElementById('tokenstat').innerHTML = "Ready";
@@ -456,7 +456,7 @@
     }
 
     function scheduleTokenRefresh() {
-        const expirationTime = parseInt(localStorage.getItem("dropbox_token_expiry"), 10);
+        const expirationTime = parseInt(localStorage.getItem("dropbox_token_expiry_ge"), 10);
         const timeLeft = expirationTime - Date.now();
 
         if (timeLeft > 0) {
